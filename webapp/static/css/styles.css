@@ -1,0 +1,25 @@
+body{
+    background-color: #67b684; 
+    justify-content: center;
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    /* background-color: #45bea4; */
+}
+
+
+.top {
+    background-color: #67b684; 
+    /* display: flex; */
+    justify-content: center;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    /* background-color: #45bea4; */
+}
