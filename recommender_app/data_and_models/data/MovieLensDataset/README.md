@@ -1,5 +1,5 @@
 # The [Movie Lens 100k Dataset](https://grouplens.org/datasets/movielens/latest/)
-_This_ README _is adapted from the one which may be found at: https://files.grouplens.org/datasets/movielens/ml-latest-README.html. This project uses a [smaller](https://files.grouplens.org/datasets/movielens/ml-latest-small.zip) version of the dataset, featuring 100,000 ratings; the complete dataset features 27,000,000 ratings, and may be downloaded via this [link](https://files.grouplens.org/datasets/movielens/ml-latest.zip) (_⚠️ _The size is 256 MB!)._
+_This_ README _is adapted from the one which may be found at: https://files.grouplens.org/datasets/movielens/ml-latest-README.html. This project uses a [smaller](https://files.grouplens.org/datasets/movielens/ml-latest-small.zip) version of the dataset, featuring 100,000 ratings; the complete dataset features 27,000,000 ratings, and may be downloaded via this [link](https://files.grouplens.org/datasets/movielens/ml-latest.zip) (_ ⚠️ _The size is 256 MB!)._
 
 
 
