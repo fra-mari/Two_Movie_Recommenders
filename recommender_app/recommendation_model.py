@@ -5,6 +5,7 @@ it in order for the recommendation engine to import it.
 
 #import datetime as dt
 import logging
+import os
 import pandas as pd
 import pickle
 from time import sleep
@@ -34,6 +35,10 @@ def update_model(df):
 
 if __name__ == '__main__':
 
+    PATH = "data_and_models/models/"
+    if not os.path.exists(PATH):
+        os.makedirs(PATH)
+
     while True:
 
         # Loading the up to date preprocessed rating file
@@ -41,12 +46,11 @@ if __name__ == '__main__':
         df_final = pd.read_csv('data_and_models/data/preprocessed/ready_dataset.csv')
         nmf, R_nmf = update_model(df_final)
 
-        
         # saving the model
-        with open('models/NMF_model.pickle','wb') as f:
+        with open('data_and_models/models/NMF_model.pickle','wb') as f:
             pickle.dump(nmf, f)
         logging.warning('New version of the NMF trained model saved in the folder "data_and_models/models/".')
-        with open('models/NMF_R.pickle','wb') as f2:
+        with open('data_and_models/models/NMF_R.pickle','wb') as f2:
             pickle.dump(R_nmf, f2)
         logging.warning('New version of the R matrix for the NMF model saved in the folder "data_and_models/models/".')
 
