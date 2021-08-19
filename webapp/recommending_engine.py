@@ -1,23 +1,23 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 This module defines a function that makes predictions based on the 
 NFM model which is trained by the recommendation_model.py module.
-It also updates the df_final.csv file with new ratings by new users.
+It also updates the ready_dataset.csv file with new ratings by new users.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 import numpy as np
-from sklearn.decomposition import NMF
+#from sklearn.decomposition import NMF
 import pandas as pd
 import pickle
 
-with open('models/NMF_model.pickle', 'rb') as f:
+with open('data_and_models/models/NMF_model.pickle', 'rb') as f:
     model = pickle.load(f)
-with open('models/NMF_R.pickle', 'rb') as f2:
+with open('data_and_models/models/NMF_R.pickle', 'rb') as f2:
     R = pickle.load(f2)
 
 
-MOVIES = pd.read_csv('../data/raw/movies.csv')
+MOVIES = pd.read_csv('data_and_models/data/MovieLensDataset/movies.csv')
 
-df_final = pd.read_csv('../data/preprocessed/df_final.csv')
+df_final = pd.read_csv('data_and_models/data/preprocessed/ready_dataset.csv')
 
 def get_recommendations(ratings, titles):
     
@@ -68,5 +68,5 @@ def get_recommendations(ratings, titles):
 def dataframe_updater(user):
     df_user = pd.DataFrame(user, columns=df_final.columns)
     df_final_new = df_final.append(df_user, ignore_index=True)
-    df_final_new.to_csv('../data/preprocessed/df_final.csv',columns=df_final.columns, index=False)
+    df_final_new.to_csv('data_and_models/data/preprocessed/ready_dataset.csv', columns=df_final.columns, index=False)
     

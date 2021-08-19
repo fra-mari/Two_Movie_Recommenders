@@ -1,19 +1,17 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    Item-based Collaborative Filtering for Movie Recommendation System.
-    Using KNN with cosine distance
+This models implements an Item-based Collaborative Filtering for Movie 
+Recommendation System. It using KNN with cosine distance.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-# importing related libraries
 
 import pandas as pd
-import numpy as np
+#import numpy as np
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 
 
-
 # Loading the data
-MOVIES = pd.read_csv('../data/raw/movies.csv')
-ratings = pd.read_csv('../data/raw/ratings.csv')
+MOVIES = pd.read_csv('data_and_models/data/MovieLensDataset/movies.csv')
+ratings = pd.read_csv('data_and_models/data/MovieLensDataset/ratings.csv')
 
 
 # merging movies and ratings datasets
@@ -30,8 +28,6 @@ knn = NearestNeighbors(metric='cosine',
                         n_neighbors=20,
                         n_jobs=-1)
 model = knn.fit(csr_data)
-
-
 
 def get_recommendations_knn(movie_name):
     n_movies_to_reccomend = 10
