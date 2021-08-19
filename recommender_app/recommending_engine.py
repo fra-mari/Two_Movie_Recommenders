@@ -5,68 +5,70 @@ It also updates the ready_dataset.csv file with new ratings by new users.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 import numpy as np
-#from sklearn.decomposition import NMF
+
+# from sklearn.decomposition import NMF
 import pandas as pd
 import pickle
 
-with open('data_and_models/models/NMF_model.pickle', 'rb') as f:
+with open("data_and_models/models/NMF_model.pickle", "rb") as f:
     model = pickle.load(f)
-with open('data_and_models/models/NMF_R.pickle', 'rb') as f2:
+with open("data_and_models/models/NMF_R.pickle", "rb") as f2:
     R = pickle.load(f2)
 
 
-MOVIES = pd.read_csv('data_and_models/data/MovieLensDataset/movies.csv')
+MOVIES = pd.read_csv("data_and_models/data/MovieLensDataset/movies.csv")
 
-df_final = pd.read_csv('data_and_models/data/preprocessed/ready_dataset.csv')
+df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
+
 
 def get_recommendations(ratings, titles):
-    
+
     # movie-genre matrix
-    Q = model.components_  
+    Q = model.components_
 
     ### Recommendation
     # creating a new user
 
-    new_user = np.full(shape=(1,R.shape[1]), fill_value = df_final.mean().mean())
-    
+    new_user = np.full(shape=(1, R.shape[1]), fill_value=df_final.mean().mean())
+
     ids = []
     for title in titles:
-        
-        ids.append(MOVIES[MOVIES['title']==title]['movieId'].iloc[0])
-        
+
+        ids.append(MOVIES[MOVIES["title"] == title]["movieId"].iloc[0])
+
     idx = []
     for movie_id in ids:
         idx.append(df_final.columns.get_loc(str(movie_id)))
 
-    new_user[0][idx[0]] = float(ratings['movie_1'])
-    new_user[0][idx[1]] = float(ratings['movie_2'])
-    new_user[0][idx[2]] = float(ratings['movie_3'])
-    new_user[0][idx[3]] = float(ratings['movie_4'])
-    new_user[0][idx[4]] = float(ratings['movie_5'])
+    new_user[0][idx[0]] = float(ratings["movie_1"])
+    new_user[0][idx[1]] = float(ratings["movie_2"])
+    new_user[0][idx[2]] = float(ratings["movie_3"])
+    new_user[0][idx[3]] = float(ratings["movie_4"])
+    new_user[0][idx[4]] = float(ratings["movie_5"])
 
-    #transfering the model for P matrix for the new user
+    # transfering the model for P matrix for the new user
     user_P = model.transform(new_user)
-             
+
     # getting the actual recommendation by multiplying P and Q
-    actual_recommendations = np.dot(user_P, Q) 
+    actual_recommendations = np.dot(user_P, Q)
 
-    
     # Finding the name of recommended movies
-    topn_arr = np.argsort(actual_recommendations[0])[::-1][1:6] 
-    
-    # top 5 values of the inversely sorted array 
-    topn_ind = df_final.columns[topn_arr].tolist() 
-    
-    # create a list of corresponding ids
-    title_list = [MOVIES[MOVIES['movieId']==int(m)]['title'].iloc[0] for m in topn_ind]
-    
+    topn_arr = np.argsort(actual_recommendations[0])[::-1][1:6]
 
-    
+    # top 5 values of the inversely sorted array
+    topn_ind = df_final.columns[topn_arr].tolist()
+
+    # create a list of corresponding ids
+    title_list = [
+        MOVIES[MOVIES["movieId"] == int(m)]["title"].iloc[0] for m in topn_ind
+    ]
+
     return title_list, new_user
 
 
 def dataframe_updater(user):
     df_user = pd.DataFrame(user, columns=df_final.columns)
     df_final_new = df_final.append(df_user, ignore_index=True)
-    df_final_new.to_csv('data_and_models/data/preprocessed/ready_dataset.csv', columns=df_final.columns, index=False)
-    
+    df_final_new.to_csv("data_and_models/data/preprocessed/ready_dataset.csv",
+        columns=df_final.columns,
+        index=False)

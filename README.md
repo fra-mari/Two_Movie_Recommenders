@@ -33,3 +33,9 @@
 ### 3. Files 
 * MICE model (Multivariate Imputation by Chained Equations) for filling the missing value [MICE_imputer.py](https://github.com/behzad1195/Movie-Recommender/blob/master/MICE_imputer.py)
 * Environment specs -> [requirements.txt](https://github.com/behzad1195/Movie-Recommender/blob/master/requirements.txt) 
+
+
+
+`docker build . movie_recommender`
+
+`docker run -ti movie_recommender`
