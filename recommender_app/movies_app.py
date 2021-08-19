@@ -1,6 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-This module controls the workflow of the movie recommender. 
-It ties all the other scripts together and produces the web application.
+This module produces the web application for the Movie Recommender.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 import random
 import logging
@@ -11,7 +10,7 @@ from flask import request
 from recommending_engine import get_recommendations, dataframe_updater
 from knn_recommending_engine import get_recommendations_knn
 
-logging.basicConfig(filename='RecommenderLog.log',
+logging.basicConfig(#filename='RecommenderLog.log',
                     level=logging.WARNING,
                     format='%(asctime)s: %(message)s')
 
@@ -71,6 +70,5 @@ def knn_page():
     
     return render_template('knn_recommender.html', movies = knn_recs, input=orig_movie)
 
-
-if __name__ == "__main__":
-    app.run(debug=True, port=5000)      
+if __name__=="__main__":
+    app.run(port=5000, debug=True)

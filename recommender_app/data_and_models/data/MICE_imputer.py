@@ -124,11 +124,11 @@ def mice_inputation(df_to_be_filled):
         index=[i for i in range(df_filled.shape[0])],
         columns=["U_" + str(i) for i in range(df_filled.shape[1])])
 
-    # replacing the movieId with ordinal index
-    df_clean.index = df_filled.index
-
     # Transposing the matrix X-Axis-> movieID, Y-Axis-> userId
     df_final = df_clean.T
+
+    # replacing the movieId with ordinal index
+    df_final.index = [num for num in range(len(df_final))]
 
     return df_final
 
