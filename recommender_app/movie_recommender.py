@@ -8,6 +8,7 @@ otherwise.
 
 # import datetime as dt
 import logging
+import sys
 from colorama import Fore, Style, init
 import os
 import pandas as pd
@@ -58,18 +59,18 @@ if __name__ == "__main__":
             + "Traing the NMF model on the MovieLens dataset. The webapp will be launched as soon as the training is completed.\nThis will take a little time, though..."
             + Style.RESET_ALL)
 
-        df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
-        logging.warning("The file ready_dataset.csv has been loaded. Starting the creation of the NMF model...")
-        nmf, R_nmf = update_model(df_final)
-        logging.warning(Fore.GREEN + "Model correctly updated!" + Style.RESET_ALL)
+        # df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
+        # logging.warning("The file ready_dataset.csv has been loaded. Starting the creation of the NMF model...")
+        # nmf, R_nmf = update_model(df_final)
+        # logging.warning(Fore.GREEN + "Model correctly updated!" + Style.RESET_ALL)
 
-        # saving the model
-        with open("data_and_models/models/NMF_model.pickle", "wb") as f:
-            pickle.dump(nmf, f)
-        logging.warning('NMF trained model saved in the folder "data_and_models/models/".')
-        with open("data_and_models/models/NMF_R.pickle", "wb") as f2:
-            pickle.dump(R_nmf, f2)
-        logging.warning('R matrix for the NMF model saved in the folder "data_and_models/models/".')
+        # # saving the model
+        # with open("data_and_models/models/NMF_model.pickle", "wb") as f:
+        #     pickle.dump(nmf, f)
+        # logging.warning('NMF trained model saved in the folder "data_and_models/models/".')
+        # with open("data_and_models/models/NMF_R.pickle", "wb") as f2:
+        #     pickle.dump(R_nmf, f2)
+        # logging.warning('R matrix for the NMF model saved in the folder "data_and_models/models/".')
 
         print(Fore.WHITE
             + Style.BRIGHT
@@ -91,7 +92,9 @@ if __name__ == "__main__":
             + "."
             + Style.RESET_ALL)
 
-        os.system("python movies_app.py &")
+        #os.system("python movies_app.py &")
+        
+        os.system("/bin/bash run_app.sh")
         sleep(10)
 
         print(Fore.WHITE
@@ -99,56 +102,60 @@ if __name__ == "__main__":
             + Style.RESET_ALL)
         keep_going = input(Fore.YELLOW
             + 'Do you wish to keep the script up for cyclically updating the NMF model? Press any key to continue OR press "Q" to quit: '
-            + Style.RESET_ALL)
-        if keep_going == "Q" or "q":
+            + Style.RESET_ALL).upper()
+        if keep_going == "Q":
             kill = input(Fore.BLUE
                 + 'Do you wish to kill both the NMF updater and the webapp? Press "Y" for killing both modules, or any other key for only killing the NMF updater: '
-                + Style.RESET_ALL)
-            if kill == "Y" or "y":
-                os.system("pkill -9 -f movies_app.py")
+                + Style.RESET_ALL).upper()
+            if kill == "Y":
+                os.system("/bin/bash kill_app.sh")
                 print("All right, the NMF updater and the webapp have been killed. Bye bye!")
-                quit()
+                sys.exit()
             else:
-                print("Quitting this module and the live update of the NMF.\n"
+                print("Quitting this module and stopping the live update of the NMF.\n"
                     + Fore.RED
-                    + "The webapp is still up and running! To shut it down, you should use the command:"
+                    + "The webapp is still up and running! To shut it down, you should use the command: "
                     + Fore.WHITE
-                    + " `pkill -9 -f movies_app.py`"
+                    + "kill -9 `lsof -i:5000 -t`"
                     + Fore.RED
                     + " in your Terminal.\n"
                     + Style.RESET_ALL)
+                
+                sys.exit()
+                
 
         else:
             print(Fore.WHITE
                 + "All right then. Keeping the NMF updater up. You can exit from it anytime with CTRL+C.\n"
                 + Style.RESET_ALL)
 
-        while True:
+            while True:
 
-            sleep(60 * 60 * 12)
+                sleep(60 * 60 * 12)
 
-            logging.warning(
-                "Running the cyclical update of the NMF model based on the most recent recommandation provided by the website users..."
-            )
+                logging.warning(
+                    "Running the cyclical update of the NMF model based on the most recent recommandation provided by the website users..."
+                )
 
-            df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
-            logging.warning("The file ready_dataset.csv has been loaded. Starting the update of the NMF model...")
-            nmf, R_nmf = update_model(df_final)
-            logging.warning("Model correctly updated!")
+                df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
+                logging.warning("The file ready_dataset.csv has been loaded. Starting the update of the NMF model...")
+                nmf, R_nmf = update_model(df_final)
+                logging.warning("Model correctly updated!")
 
-            with open("data_and_models/models/NMF_model.pickle", "wb") as f:
-                pickle.dump(nmf, f)
-            logging.warning('New version of the NMF trained model saved in the folder "data_and_models/models/".')
-            with open("data_and_models/models/NMF_R.pickle", "wb") as f2:
-                pickle.dump(R_nmf, f2)
-            logging.warning('New version of the R matrix for the NMF model saved in the folder "data_and_models/models/".')
+                with open("data_and_models/models/NMF_model.pickle", "wb") as f:
+                    pickle.dump(nmf, f)
+                logging.warning('New version of the NMF trained model saved in the folder "data_and_models/models/".')
+                with open("data_and_models/models/NMF_R.pickle", "wb") as f2:
+                    pickle.dump(R_nmf, f2)
+                logging.warning('New version of the R matrix for the NMF model saved in the folder "data_and_models/models/".')
 
     except KeyboardInterrupt:
         print(" Quitting...\n"
             + Fore.RED
-            + "N.B.: To quit this module will not stop the webapp if it is running! To shut it down, you should use the command:"
+            + "N.B.: To quit this module will not stop the webapp if it is running! To shut it down, you should use the command: "
             + Fore.WHITE
-            + " `pkill -9 -f movies_app.py`"
+            + "kill -9 `lsof -i:5000 -t`"
             + Fore.RED
             + " in your Terminal.\n"
             + Style.RESET_ALL)
+
