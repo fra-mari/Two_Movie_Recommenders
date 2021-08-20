@@ -36,6 +36,10 @@
 
 
 
-`docker build . movie_recommender`
+`docker build . -t movies`
 
-`docker run -ti movie_recommender`
+`docker run -ti -p 5000:5000 --name recommender 
+
+`python movie_recommender.py``
+
+`exit`
