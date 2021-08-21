@@ -70,5 +70,5 @@ def knn_page():
     
     return render_template('knn_recommender.html', movies = knn_recs, input=orig_movie)
 
-#if __name__=="__main__":
-    #app.run(port=5000)#, debug=True)
+if __name__=="__main__":
+    app.run(port=5000, debug=True)

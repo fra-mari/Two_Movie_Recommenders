@@ -126,7 +126,7 @@ def mice_inputation(df_to_be_filled):
 if __name__ == "__main__":
 
     logging.info(Fore.BLUE
-        + "WELCOME! This is the data preparation module for the Movie Recommender System developed by:\n\nBehzad Azarhoushang\nLaura Bartolini\nand Francesco Mari\n\nThis module will first remove some noise from the MovieLensDataset on the top of which the Recommendation engines have been built, then will use a MICE imputer for filling the residual gaps in the data."
+        + "Welcome to the data preparation module for the Statistically Significant Movie Recommender.\n\nThis module will first remove some noise from the MovieLensDataset on the top of which the Recommendation engines have been built, then will use a MICE imputer for filling the residual gaps in the data."
         + Style.RESET_ALL)
     # Loading the dataset
     ratings = pd.read_csv("MovieLensDataset/ratings.csv")

@@ -6,7 +6,6 @@ Moreover, it runs the webapp and keeps it on unless the user decides
 otherwise.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-# import datetime as dt
 import logging
 import sys
 from colorama import Fore, Style, init
@@ -16,14 +15,12 @@ import pickle
 from time import sleep
 from sklearn.decomposition import NMF
 
-# from app import app
-
 logging.basicConfig(format="%(asctime)s: %(message)s")
 
 init()
 
 
-def update_model(df):
+def create_update_model(df):
     """
     trains the model based on the latest input
     ARGUMENT: The pandas dataframe containing the recommandations
@@ -33,7 +30,6 @@ def update_model(df):
     R = pd.DataFrame(df, index=df.index, columns=df.columns).values
 
     # create a model and set the hyperparameters
-    # 20 Genres (from EDA.py) + 106 years -> 126 number of components
     model = NMF(n_components=126, init="random", random_state=1, max_iter=100000, solver="cd")
 
     # fitting the model to R
@@ -50,7 +46,7 @@ if __name__ == "__main__":
             os.makedirs(PATH)
 
         print(Fore.BLUE
-            + "Welcome to the Movie Recommender System developed by:\n\nBehzad Azarhoushang\nLaura Bartolini\nand Francesco Mari\n\nThis module will train a Non-Negative Matrix Factorization Model (NFM) on the MovieLensDataset and launch the webapp for interacting with it.\n"
+            + "Welcome to the Statistically Significant Movie Recommender!\n\nThis module will train a Non-Negative Matrix Factorization Model (NFM) on the MovieLensDataset and launch the webapp for interacting with it.\n"
             + Style.RESET_ALL)
         print(Fore.WHITE
             + Style.BRIGHT
@@ -59,18 +55,18 @@ if __name__ == "__main__":
             + "Traing the NMF model on the MovieLens dataset. The webapp will be launched as soon as the training is completed.\nThis will take a little time, though..."
             + Style.RESET_ALL)
 
-        # df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
-        # logging.warning("The file ready_dataset.csv has been loaded. Starting the creation of the NMF model...")
-        # nmf, R_nmf = update_model(df_final)
-        # logging.warning(Fore.GREEN + "Model correctly updated!" + Style.RESET_ALL)
+        df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
+        logging.warning("The file ready_dataset.csv has been loaded. Starting the creation of the NMF model...")
+        nmf, R_nmf = create_update_model(df_final)
+        logging.warning(Fore.GREEN + "Model correctly updated!" + Style.RESET_ALL)
 
-        # # saving the model
-        # with open("data_and_models/models/NMF_model.pickle", "wb") as f:
-        #     pickle.dump(nmf, f)
-        # logging.warning('NMF trained model saved in the folder "data_and_models/models/".')
-        # with open("data_and_models/models/NMF_R.pickle", "wb") as f2:
-        #     pickle.dump(R_nmf, f2)
-        # logging.warning('R matrix for the NMF model saved in the folder "data_and_models/models/".')
+        # saving the model
+        with open("data_and_models/models/NMF_model.pickle", "wb") as f:
+            pickle.dump(nmf, f)
+        logging.warning('NMF trained model saved in the folder "data_and_models/models/".')
+        with open("data_and_models/models/NMF_R.pickle", "wb") as f2:
+            pickle.dump(R_nmf, f2)
+        logging.warning('R matrix for the NMF model saved in the folder "data_and_models/models/".')
 
         print(Fore.WHITE
             + Style.BRIGHT
@@ -91,8 +87,6 @@ if __name__ == "__main__":
             + Style.NORMAL
             + "."
             + Style.RESET_ALL)
-
-        #os.system("python movies_app.py &")
         
         os.system("/bin/bash run_app.sh")
         sleep(10)
@@ -139,7 +133,7 @@ if __name__ == "__main__":
 
                 df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
                 logging.warning("The file ready_dataset.csv has been loaded. Starting the update of the NMF model...")
-                nmf, R_nmf = update_model(df_final)
+                nmf, R_nmf = create_update_model(df_final)
                 logging.warning("Model correctly updated!")
 
                 with open("data_and_models/models/NMF_model.pickle", "wb") as f:
