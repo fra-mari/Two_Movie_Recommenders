@@ -5,8 +5,6 @@ It also updates the ready_dataset.csv file with new ratings by new users.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 import numpy as np
-
-# from sklearn.decomposition import NMF
 import pandas as pd
 import pickle
 

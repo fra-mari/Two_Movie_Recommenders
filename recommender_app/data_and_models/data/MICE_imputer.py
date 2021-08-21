@@ -114,23 +114,22 @@ def mice_inputation(df_to_be_filled):
         index=[i for i in range(df_filled.shape[0])],
         columns=["U_" + str(i) for i in range(df_filled.shape[1])])
 
-    # Transposing the matrix X-Axis-> movieID, Y-Axis-> userId
-    df_final = df_clean.T
-
     # replacing the movieId with ordinal index
-    df_final.index = [num for num in range(len(df_final))]
+    df_clean.index = df_to_be_filled.index
+    
+    # Transposing the matrix X-Axis-> movieID, Y-Axis-> userId
+    df_final = df_clean.T    
 
     return df_final
-
 
 if __name__ == "__main__":
 
     logging.info(Fore.BLUE
-        + "Welcome to the data preparation module for the Statistically Significant Movie Recommender.\n\nThis module will first remove some noise from the MovieLensDataset on the top of which the Recommendation engines have been built, then will use a MICE imputer for filling the residual gaps in the data."
+        + "Welcome to the data preparation module for the Statistically Significant Movie Recommender.\n\nThis module will first remove some noise from the MovieLensDataset on the top of which the Recommendation engines have been built,\nthen will use a MICE imputer for filling the residual gaps in the data."
         + Style.RESET_ALL)
     # Loading the dataset
     ratings = pd.read_csv("MovieLensDataset/ratings.csv")
-    #movies = pd.read_csv("MovieLensDataset/movies.csv")
+    movies = pd.read_csv("MovieLensDataset/movies.csv")
 
     # Applying the changes
     df_with_nans = noise_reducer(ratings)
@@ -143,5 +142,5 @@ if __name__ == "__main__":
 
     ready_dataset.to_csv(f"{PATH}/ready_dataset.csv", index=False)
     logging.info(Fore.BLUE
-        + f'The file "ready_dataset.csv", containing the preprocessed MovieLens dataset now ready to be used by the Recommandation engines is now in the folder "data_and_models/data/{path}.'
+        + f'The file "ready_dataset.csv", containing the preprocessed MovieLens dataset now ready to be used by the Recommandation engines is now in the folder "data_and_models/data/{PATH}.'
         + Style.RESET_ALL)
