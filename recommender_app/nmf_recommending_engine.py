@@ -16,7 +16,7 @@ with open("data_and_models/models/NMF_R.pickle", "rb") as f2:
 
 MOVIES = pd.read_csv("data_and_models/data/MovieLensDataset/movies.csv")
 
-df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
+df_final = pd.read_csv("data_and_models/data/preprocessed_for_nmf/ready_dataset.csv")
 
 
 def get_recommendations(ratings, titles):
@@ -67,6 +67,6 @@ def get_recommendations(ratings, titles):
 def dataframe_updater(user):
     df_user = pd.DataFrame(user, columns=df_final.columns)
     df_final_new = df_final.append(df_user, ignore_index=True)
-    df_final_new.to_csv("data_and_models/data/preprocessed/ready_dataset.csv",
+    df_final_new.to_csv("data_and_models/data/preprocessed_for_nmf/ready_dataset.csv",
         columns=df_final.columns,
         index=False)

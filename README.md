@@ -1,30 +1,37 @@
-# The Statistically Significant Movie Recommender
+# The Statistically Significant Movie Recommender(s)
+
 _A webapp for movie recommendations made via two different models (NMF and KNN)_
 
-![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) ![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)
+![MIT license](https://img.shields.io/badge/License-MIT-orange.svg) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
+This webapp provides a simple interface for *two movie recommender systems*:
 
+1. Based on the user's ratings on five different movies, the first recommender uses <span style="color:forestgreen"><b>Collaborative Filtering with Non-Negative Matrix Factorization (NMF)</b></span> to suggest another five titles.
+2. The second recommender just asks for the title of the user's favourite movie, and uses <span style="color:tomato"><b>Item-Based Collaborative Filtering with K-Nearest Neighbours (KNN) and Cosine Similarity</b></span> to produce a list of ten similar movies.
 
-### The Idea
-
-Build a movie recommender website using 'MovieLens' Dataset
-
-* Two recommender models has been used for providing the recommendations
-  + 1. Collaborative Filtering With Non-negative Matrix Factorization (NMF)
-  + 2. Item-based Collaborative Filtering (find similar movies instead of similar users) using CSR matrix and KNN with 'cosine similarity' as the method
-
-
+Also features **a function to automatically update and refine the NMF model** every 12 hours on the basis of the ratings input by the webapp's users.  
 
 | ![gif](./StatSigRec.gif) |
 | :---: |
 
 #### Data Set
-fff
+This project is based on the **Movie Lens 100k Dataset**. Click [here](https://github.com/fra-mari/Two_Movie_Recommenders/tree/main/recommender_app/data_and_models/data/MovieLensDataset#the-movie-lens-100k-dataset) for more information.
 
-#### Tech Stack
-- d
-- d
-- d
+
+
+---
+### Tech Stack
+<p>
+<img src="https://img.shields.io/badge/docker-%232496ED.svg?&style=for-the-badge&logo=docker&logoColor=white" height="24"/>
+<img src="https://img.shields.io/badge/python-%233776AB.svg?&style=for-the-badge&logo=python&logoColor=white" height="24" />
+<img src="https://img.shields.io/badge/pandas-%23150458.svg?&style=for-the-badge&logo=pandas&logoColor=white" height="24" />
+<img src="https://img.shields.io/badge/scipy-%238CAAE6.svg?&style=for-the-badge&logo=scipy&logoColor=black" height="24" />
+<img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?&style=for-the-badge&logo=scikit-learn&logoColor=black" height="24" />
+<img src="https://img.shields.io/badge/flask-%23000000.svg?&style=for-the-badge&logo=flask&logoColor=white" height="24" />
+<img src="https://img.shields.io/badge/jinja-%23B41717.svg?&style=for-the-badge&logo=jinja&logoColor=white" height="24"/>
+<img src="https://img.shields.io/badge/html5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white" height="24" />
+<img src="https://img.shields.io/badge/css3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white" height="24"/>
+</p>
 
 ---
 ### How To Use This Code
@@ -34,13 +41,13 @@ If you use MacOs or Linux, clone this repository and `cd` into the folder `recom
 1. Install the required Python libraries with `pip install -r requirements.txt`.
 
 2. Generate the trained models by running `python movie_recommender.py`. The process may take a few minutes, but the module also takes care of starting the webapp once the training phase:
-   - When you Terminal prints `Now starting the Flask app`, open the address `http://localhost:5000` in your browser for using the webapp, then **follow the instructions on the CLI** to decide whether to enable the automatic retraining of the models based on the ratings provided by the app's users or not.
+   - When your Terminal prints `Now starting the Flask app`, open the address `http://localhost:5000` in your browser for using the webapp, then **follow the instructions on the CLI** to decide whether to enable the automatic retraining of the models based on the ratings provided by the app's users or not.
    
    ⚠️⚠️ On some Linux versions, you may need to `apt install lsof` before running the `movie_recommender` module.
    
 3. Once the files containing the model generated, you can always access the webapp running `python movies_app.py`.
 
-**P.S.**: If you prefer to `Docker`, just follow the instructions [in the following paragraph](https://github.com/fra-mari/two_movie_recommendation_engines#on-windows).
+**P.S.**: If you prefer to use `Docker`, just follow the instructions [in the following paragraph](https://github.com/fra-mari/two_movie_recommendation_engines#on-windows).
 
 
 
@@ -66,6 +73,6 @@ The code in this repository is an extended and reworked version of the original 
 
 ---
 ### To Do:
-- Improve the CSS of the website
+- Improve the CSS of the website.
 - Show the movie posters of the recommended movies.
-- Tests
+- Tests.

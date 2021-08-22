@@ -10,11 +10,11 @@ from sklearn.neighbors import NearestNeighbors
 
 # Loading the data
 MOVIES = pd.read_csv('data_and_models/data/MovieLensDataset/movies.csv')
-ratings = pd.read_csv('data_and_models/data/MovieLensDataset/ratings.csv')
+RATINGS = pd.read_csv('data_and_models/data/MovieLensDataset/ratings.csv')
 
 
 # merging movies and ratings datasets
-final_dataset = ratings.pivot(index='movieId',columns='userId',values='rating')
+final_dataset = RATINGS.pivot(index='movieId',columns='userId',values='rating')
 final_dataset.fillna(0,inplace=True)
 
 # using csr matrix to increase computation speed when dealing with highly sparse data

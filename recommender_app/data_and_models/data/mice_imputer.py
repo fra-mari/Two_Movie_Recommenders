@@ -24,7 +24,7 @@ init()
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 
-PATH = "preprocessed/"
+PATH = "preprocessed_for_nmf/"
 MICE_FUNCTIONING = (
     Style.BRIGHT
     + """

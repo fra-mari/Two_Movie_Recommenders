@@ -20,7 +20,7 @@ logging.basicConfig(format="%(asctime)s: %(message)s")
 init()
 
 
-def create_update_model(df):
+def create_update_nmf_model(df):
     """
     trains the model based on the latest input
     ARGUMENT: The pandas dataframe containing the recommandations
@@ -55,9 +55,9 @@ if __name__ == "__main__":
             + "Traing the NMF model on the MovieLens dataset. The webapp will be launched as soon as the training is completed.\nThis will take a little time, though..."
             + Style.RESET_ALL)
 
-        df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
+        df_final = pd.read_csv("data_and_models/data/preprocessed_for_nmf/ready_dataset.csv")
         logging.warning("The file ready_dataset.csv has been loaded. Starting the creation of the NMF model...")
-        nmf, R_nmf = create_update_model(df_final)
+        nmf, R_nmf = create_update_nmf_model(df_final)
         logging.warning(Fore.GREEN + "Model correctly updated!" + Style.RESET_ALL)
 
         # saving the model
@@ -131,9 +131,9 @@ if __name__ == "__main__":
                     "Running the cyclical update of the NMF model based on the most recent recommandation provided by the website users..."
                 )
 
-                df_final = pd.read_csv("data_and_models/data/preprocessed/ready_dataset.csv")
+                df_final = pd.read_csv("data_and_models/data/preprocessed_for_nmf/ready_dataset.csv")
                 logging.warning("The file ready_dataset.csv has been loaded. Starting the update of the NMF model...")
-                nmf, R_nmf = create_update_model(df_final)
+                nmf, R_nmf = create_update_nmf_model(df_final)
                 logging.warning("Model correctly updated!")
 
                 with open("data_and_models/models/NMF_model.pickle", "wb") as f:
