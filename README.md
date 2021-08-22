@@ -15,12 +15,10 @@ Also features **a function to automatically update and refine the NMF model** ev
 | :---: |
 
 #### Data Set
-This project is based on the **Movie Lens 100k Dataset**. Click [here](https://github.com/fra-mari/Two_Movie_Recommenders/tree/main/recommender_app/data_and_models/data/MovieLensDataset#the-movie-lens-100k-dataset) for more information.
+This project is based on the **MovieLens 100k Dataset**. Click [here](https://github.com/fra-mari/Two_Movie_Recommenders/tree/main/recommender_app/data_and_models/data/MovieLensDataset#the-movie-lens-100k-dataset) for more information.
 
 
-
----
-### Tech Stack
+#### Tech Stack
 <p>
 <img src="https://img.shields.io/badge/docker-%232496ED.svg?&style=for-the-badge&logo=docker&logoColor=white" height="24"/>
 <img src="https://img.shields.io/badge/python-%233776AB.svg?&style=for-the-badge&logo=python&logoColor=white" height="24" />
