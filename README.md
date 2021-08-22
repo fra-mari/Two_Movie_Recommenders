@@ -43,7 +43,7 @@ If you use MacOs or Linux, clone this repository and `cd` into the folder `recom
    
    ⚠️⚠️  On some Linux versions, you may need to `apt install lsof` before running the `movie_recommender` module.
    
-3. Once the files containing the model generated, you can always access the webapp running `python movies_app.py`.
+3. Once the NMF-model files generated, you can always access the webapp running `python movies_app.py`.
 
 **P.S.**: If you prefer to use `Docker`, just follow the instructions [in the following paragraph](https://github.com/fra-mari/two_movie_recommendation_engines#on-windows).
 
