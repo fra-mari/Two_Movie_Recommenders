@@ -41,7 +41,7 @@ If you use MacOs or Linux, clone this repository and `cd` into the folder `recom
 2. Generate the trained models by running `python movie_recommender.py`. The process may take a few minutes, but the module also takes care of starting the webapp once the training phase:
    - When your Terminal prints `Now starting the Flask app`, open the address `http://localhost:5000` in your browser for using the webapp, then **follow the instructions on the CLI** to decide whether to enable the automatic retraining of the models based on the ratings provided by the app's users or not.
    
-   ⚠️⚠️ On some Linux versions, you may need to `apt install lsof` before running the `movie_recommender` module.
+   ⚠️⚠️  On some Linux versions, you may need to `apt install lsof` before running the `movie_recommender` module.
    
 3. Once the files containing the model generated, you can always access the webapp running `python movies_app.py`.
 
