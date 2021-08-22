@@ -65,7 +65,7 @@ You may recur to `WSL`, but the simplest way is probably to use `Docker`. All yo
 
 - Create and start a container by running `docker run -ti -p 5000:5000 --name recommender movies`. You will get access to the container's Bash Command Line.
 
-- Run `python movie_recommender.py`. **Refer to point 2 of the previous paragraph** for the next steps and options. The webapp will be available at `http://localhost:5000`.
+- Run `python movie_recommender.py`. **Refer to [point 2](https://github.com/fra-mari/two_movie_recommendation_engines/blob/main/README.md#how-to-use-this-code) of the previous paragraph** for the next steps and options. The webapp will be available at `http://localhost:5000`.
 
 - To quit the container's environment and CLI, you may use the command `exit`.
 
