@@ -33,7 +33,7 @@ This project is based on the **MovieLens 100k Dataset**. Click [here](https://gi
 
 ---
 ### How To Use This Code
-#### ➡️ On UNIX Systems
+#### ➡️ &nbsp; On UNIX Systems
 
 If you use MacOs or Linux, clone this repository and `cd` into the folder `recommender_app`. Then follow these simple steps:
 1. Install the required Python libraries with `pip install -r requirements.txt`.
@@ -49,7 +49,7 @@ If you use MacOs or Linux, clone this repository and `cd` into the folder `recom
 
 
 
-#### ➡️ On Windows
+#### ➡️ &nbsp; On Windows
 You may recur to `WSL`, but the simplest way is probably to use `Docker`. All you have to do is:
 
 - `cd` into the folder `recommender_app`.
