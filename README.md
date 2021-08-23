@@ -73,6 +73,6 @@ The code in this repository is an extended and reworked version of the original 
 
 ---
 ### To Do:
-- Improve the CSS of the website.
-- Show the movie posters of the recommended movies.
-- Tests.
+- [ ] Improve the CSS of the website.
+- [ ] Show the movie posters of the recommended movies.
+- [ ] Tests.
