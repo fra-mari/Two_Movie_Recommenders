@@ -2,7 +2,7 @@
 
 _A webapp for movie recommendations made via two different models (NMF and KNN)_
 
-![MIT license](https://img.shields.io/badge/License-MIT-orange.svg) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
+![MIT license](https://img.shields.io/badge/License-MIT-orange.svg) ![Maintenance](https://img.shields.io/badge/Maintained%5F-yes-green.svg)
 
 This webapp provides a simple interface for *two movie recommender systems*:
 
