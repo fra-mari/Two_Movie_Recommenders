@@ -70,7 +70,7 @@ You may recur to `WSL`, but the simplest way is probably to use `Docker`. All yo
 The code in this repository is an extended and reworked version of the original project developed in collaboration with [Behzad Azarhoushang](https://github.com/behzad1195) and [Laura Bartolini](https://github.com/Rellino).
 
 ---
-### To Do:
+### To Do
 - [ ] Improve the CSS of the website.
 - [ ] Show the movie posters of the recommended movies.
 - [ ] Tests.
