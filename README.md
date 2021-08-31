@@ -38,12 +38,12 @@ This project is based on the **MovieLens 100k Dataset**. Click [here](https://gi
 If you use MacOs or Linux, clone this repository and `cd` into the folder `recommender_app`. Then follow these simple steps:
 1. Install the required Python libraries with `pip install -r requirements.txt`.
 
-2. Generate the NMF trained models by running `python movie_recommender.py`. The process may take a few minutes, but the module also takes care of starting the webapp once the training phase:
+2. Generate the NMF trained models by running `python movie_recommender.py`. The process may take a few minutes, but the module also takes care of starting the webapp once the training phase achieved:
    - When your Terminal prints `Now starting the Flask app`, open the address `http://localhost:5000` in your browser for using the webapp, then **follow the instructions on the CLI** to decide whether to enable the automatic retraining of the models based on the ratings provided by the app's users or not.
    
    ⚠️⚠️  On some Linux versions, you may need to `apt install lsof` before running the `movie_recommender` module.
    
-3. Once the NMF-model files generated, you can always access the webapp running `python movies_app.py`.
+3. Once the NMF-model files generated, you can always access the webapp by running `python movies_app.py`.
 
 **P.S.**: If you prefer to use `Docker`, just follow the instructions [in the following paragraph](https://github.com/fra-mari/two_movie_recommendation_engines#on-windows).
 
